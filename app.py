@@ -1,7 +1,9 @@
 from fastapi import FastAPI, Response
+from fastapi.staticfiles import StaticFiles
 from typing import Dict, List
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 StoryNode = Dict[str, object]
 STORY: Dict[str, StoryNode] = {
@@ -61,6 +63,7 @@ STORY: Dict[str, StoryNode] = {
     }
 }
 
+
 def render(node_id: str) -> str:
     node = STORY.get(node_id, STORY["start"])
     title = node["title"]
@@ -75,31 +78,67 @@ def render(node_id: str) -> str:
         <meta charset="utf-8"/>
         <title>{title}</title>
         <style>
-          body {{ font-family: system-ui, sans-serif; margin: 3rem; max-width: 720px; line-height: 1.5; }}
-          h1 {{ font-size: 1.8rem; margin-bottom: .5rem; }}
-          p {{ margin: .5rem 0 1rem; }}
-          ul {{ padding-left: 1rem; }}
-          a {{ text-decoration: none; }}
-          a:hover {{ text-decoration: underline; }}
-          .footer {{ color:#666; font-size:.8rem; margin-top:2rem; }}
+          body {{
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            font-family: monospace, monospace;
+            margin: 2rem auto;
+            max-width: 720px;
+            line-height: 1.6;
+            text-align: center;
+          }}
+          h1 {{
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: #ffd369;
+          }}
+          p {{
+            margin: 1rem 0;
+          }}
+          ul {{
+            list-style: none;
+            padding: 0;
+          }}
+          li {{
+            margin: .5rem 0;
+          }}
+          a {{
+            color: #80dfff;
+            text-decoration: none;
+            font-weight: bold;
+          }}
+          a:hover {{
+            color: #ffd369;
+          }}
+          img {{
+            max-width: 100%;
+            margin-bottom: 1rem;
+            border: 3px solid #333;
+            border-radius: 8px;
+          }}
         </style>
       </head>
       <body>
+        <img src='/static/cover.png' alt='Azure Text Adventure Cover'>
         <h1>{title}</h1>
         <p>{text}</p>
         <ul>{links}</ul>
-        <div class="footer">Text Adventure demo • FastAPI on Azure App Service</div>
+        <div class="footer">Azure Text Adventure • FastAPI on Azure</div>
       </body>
     </html>
     """
+
+
 
 @app.get("/")
 def home():
     return Response(render("start"), media_type="text/html")
 
+
 @app.get("/go/{node_id}")
 def go(node_id: str):
     return Response(render(node_id), media_type="text/html")
+
 
 @app.get("/health")
 def health():
