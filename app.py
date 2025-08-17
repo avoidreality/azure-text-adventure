@@ -8,8 +8,8 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 StoryNode = Dict[str, object]
 STORY: Dict[str, StoryNode] = {
     "start": {
-        "title": "The Fork in the Forest",
-        "text": "You wake in a moonlit forest. A path splits: left toward drums, right toward a distant glow.",
+        "title": "[STAGING] The Fork in the Forest",
+        "text": "You wake in a moonlit forest you hear concussive bomb blasts in the distance. A path splits: left toward drums, right toward a distant glow.",
         "choices": [
             {"label": "Go left (drums)", "to": "drums"},
             {"label": "Go right (glow)", "to": "glow"}
@@ -17,7 +17,7 @@ STORY: Dict[str, StoryNode] = {
     },
     "drums": {
         "title": "Drums",
-        "text": "The drums grow louder. A traveler offers a wooden charm for luck.",
+        "text": "The drums grow louder. A guitar feeds back then dives into strange solo as a singer rolls on the ground, starting to sing. A traveler offers a robot-detection-kit for survival.",
         "choices": [
             {"label": "Accept the charm", "to": "charm"},
             {"label": "Refuse and press on", "to": "river"}
@@ -25,7 +25,7 @@ STORY: Dict[str, StoryNode] = {
     },
     "glow": {
         "title": "Glow",
-        "text": "A lantern hangs from an old gate. Beyond it, a quiet village sleeps.",
+        "text": "Radiation from a recent nuclear blast smolders. You stay very far back from this blast site and put on your nuclear windbreaker to shield the radiation. Beyond it, a quiet village sleeps.",
         "choices": [
             {"label": "Enter the village", "to": "village"},
             {"label": "Turn back to the fork", "to": "start"}
@@ -33,7 +33,7 @@ STORY: Dict[str, StoryNode] = {
     },
     "charm": {
         "title": "Charm",
-        "text": "Warmth tingles in your palm. The trees part, revealing a safe footbridge.",
+        "text": "The robot-detection-kit pings in your palm. The trees part, revealing a safe footbridge.",
         "choices": [
             {"label": "Cross the bridge", "to": "village"},
             {"label": "Return to the fork", "to": "start"}
@@ -56,7 +56,7 @@ STORY: Dict[str, StoryNode] = {
     },
     "ending_brave": {
         "title": "Brave Crossing",
-        "text": "You leap from stone to stone—splash! You make it, soaked but laughing.",
+        "text": "You leap from stone to stone—splash! A walking robot jumps in front of you, jabbering in a strange cold synth voice. The automatic weapon firing at you is your last glimpse of life. You died pilgrim.",
         "choices": [
             {"label": "Play again", "to": "start"}
         ],
