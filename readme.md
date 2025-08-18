@@ -6,6 +6,10 @@ A tiny browser-based choose-your-own-adventure game built with Python + FastAPI 
 
 This project reimagines the classic “Hello World” lab (AZ-104: Implement Web Apps) with something more fun—an interactive text adventure you can play right in your browser.
 
+The production version you can play: https://azuretextadventure.azurewebsites.net/ 
+
+Vibe coded 1 Saturday afternoon.
+
 Features
 
 Interactive branching story (play in the browser)
@@ -23,3 +27,6 @@ Deployment slots (staging vs. production)
 Slot swaps
 
 (Optional) autoscale testing
+
+Branches: 
+main and staging. Staging branch has an alternate story. 
